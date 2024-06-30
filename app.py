@@ -20,7 +20,7 @@ working_dir = os.path.dirname(os.path.abspath(__file__))
 credit_rate =  pickle.load(open(f'{working_dir}/models/Credit_rating _model.pkl', 'rb'))
 # encoder=  pickle.load(open(f'{working_dir}//models/encoder.pkl', 'rb'))
 scaler = pickle.load(open(f'{working_dir}/models/min_max_scaler.pkl', 'rb'))
-model_path = model_path = os.path.join(working_dir, 'models/saved_model')  # Change this to your actual path
+model_path = model_path = os.path.join(working_dir, 'models/saved_model')  
 tokenizer_path =model_path = os.path.join(working_dir, 'models/DistilBert_Tokenizer')
 invest = pickle.load(open(f'{working_dir}/models/investment_risk_model.pkl', 'rb'))
 with st.sidebar:
@@ -137,10 +137,10 @@ if selected == 'Investment Risk Prediction':
         news_input =[news]
         
 
-        tokenizer = DistilBertTokenizer.from_pretrained(tokenizer_path, from_tf=True, config='tokenizer_config.json')
+        tokenizer = DistilBertTokenizer.from_pretrained(tokenizer_path)
 
 
-        model = DistilBertForSequenceClassification.from_pretrained(model_path, from_tf=True)
+        model = TFDistilBertForSequenceClassification.from_pretrained(model_path, from_tf=True)
         inputs = tokenizer(news, return_tensors="pt", truncation=True, padding=True, max_length=512)
 
         # Perform the prediction
