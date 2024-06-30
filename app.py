@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 import pickle
 import numpy as np
-from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
+from transformers import DistilBertTokenizer, TFDistilBertForSequenceClassification
 import torch
 import os
 st.set_page_config(page_title="InvestiWise",
