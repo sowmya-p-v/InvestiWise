@@ -137,7 +137,7 @@ if selected == 'Investment Risk Prediction':
         news_input =[news]
         
 
-       tokenizer = DistilBertTokenizer.from_pretrained(tokenizer_path)
+        tokenizer = DistilBertTokenizer.from_pretrained(tokenizer_path)
 
 
         model = DistilBertForSequenceClassification.from_pretrained(model_path, from_tf=True)
