@@ -157,10 +157,10 @@ if selected == 'Investment Risk Prediction':
 
         invesment_risk = invest([input_with_predictions])
         descriptions = {
-              0: "Stable Financials, ESG Positive with Positive News Impact - Low to Moderate Investment Risk"
-              1: "Stable Financials with Negative News Impact - Low to Moderate Investment Risk"
-              2: "High Risk, ESG Positive with Positive News Impact - High Investment Risk considering Financial Health"
-              3: "Stable Financials, ESG neutral with Positive News Impact - Low to Moderate Investment Risk"
+              0: "Stable Financials, ESG Positive with Positive News Impact - Low to Moderate Investment Risk",
+              1: "Stable Financials with Negative News Impact - Low to Moderate Investment Risk",
+              2: "High Risk, ESG Positive with Positive News Impact - High Investment Risk considering Financial Health",
+              3: "Stable Financials, ESG neutral with Positive News Impact - Low to Moderate Investment Risk",
               4: "High Risk, ESG neutral with Negative News Impact - High Investment Risk considering Financial Health"
         }
         try:
