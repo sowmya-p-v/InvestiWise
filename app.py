@@ -129,7 +129,8 @@ if selected == 'Investment Risk Prediction':
         # st.writ(
         input_vector = np.concatenate((numerical_inputs_array,market_input_array,region_input_array), axis=1)
         scaled_inputs = scaler.transform(input_vector)
-        st.write(input_vector)
+      
+        st.warning(input_vector)
         # Predict using the model
         credit_rating_impact = credit_rate.predict(scaled_inputs)
        
