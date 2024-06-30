@@ -125,8 +125,8 @@ if selected == 'Investment Risk Prediction':
         market_input_array = np.array([market_input]).reshape(1, -1)
         region_input_array = np.array([list(region_input.values())]).reshape(1, -1)
         # numerical_inputs_array = np.array(numerical_inputs).reshape(1, -1)
-
-        scaled_inputs = scaler.transform([numerical_inputs])
+        numerical_inputs_array = np.array(numerical_inputs).reshape(1, -1)
+        scaled_inputs = scaler.transform(numerical_inputs_array)
         input_vector = np.concatenate((scaled_inputs,market_input_array,region_input_array), axis=1)
         # Predict using the model
         credit_rating_impact = credit_rate.predict(input_vector)
