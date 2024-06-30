@@ -135,7 +135,7 @@ if selected == 'Investment Risk Prediction':
         input_vector = np.concatenate((scaled_inputs, categorical_data_encoded), axis=1)
 
         # Predict using the model
-        credit_rating_impact = credit_rate.predict([input_vector])
+        credit_rating_impact = credit_rate.predict(input_vector)
 
         tokenizer = DistilBertTokenizer.from_pretrained(tokenizer_path)
 
@@ -153,9 +153,12 @@ if selected == 'Investment Risk Prediction':
         sentiment_map = {0: -1, 1: 0, 2: 1}
         predicted_sentiment =sentiment_map[predicted_class]
 
-        input_with_predictions = np.concatenate((input_vector, np.array([[credit_rating_impact, predicted_sentiment]])), axis=1)
+        extra_features = np.array([[credit_rating_impact, predicted_sentiment]])
+        input_with_predictions = np.concatenate((extra_features, input_vector, extra_features), axis=1)
 
-        invesment_risk = invest([input_with_predictions])
+        # input_with_predictions = np.concatenate((input_vector, np.array([[credit_rating_impact, predicted_sentiment]])), axis=1)
+
+        invesment_risk = invest(input_with_predictions)
         descriptions = {
               0: "Stable Financials, ESG Positive with Positive News Impact - Low to Moderate Investment Risk",
               1: "Stable Financials with Negative News Impact - Low to Moderate Investment Risk",
