@@ -88,7 +88,7 @@ if selected == 'Investment Risk Prediction':
     Unlevered_Beta = st.slider('Unlevered Beta',-2.00,3.50)
     WACC = st.slider('Weighted Average Cost of Capital(WACC)',0.00,25.00)
     WACC_COST_DEBT=st.slider('WACC Cost Debt',0.00,10.00)
-    WACC_COST_Equity =st.slider('WACC Cost Equity',0.00,20)
+    WACC_COST_Equity =st.slider('WACC Cost Equity',0.00,20.00)
     EPS_Growth= st.slider('Earning Per Share Growth',-600,900)
     col1,col2,col3=st.columns([1,2,1])
     with col1:
