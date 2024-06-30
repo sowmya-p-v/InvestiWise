@@ -126,10 +126,11 @@ if selected == 'Investment Risk Prediction':
         region_input_array = np.array([list(region_input.values())]).reshape(1, -1)
         # numerical_inputs_array = np.array(numerical_inputs).reshape(1, -1)
         numerical_inputs_array = np.array(numerical_inputs).reshape(1, -1)
-        scaled_inputs = scaler.transform(numerical_inputs_array)
-        input_vector = np.concatenate((scaled_inputs,market_input_array,region_input_array), axis=1)
+        
+        input_vector = np.concatenate((numerical_inputs_array,market_input_array,region_input_array), axis=1)
+        scaled_inputs = scaler.transform(input_vector)
         # Predict using the model
-        credit_rating_impact = credit_rate.predict(input_vector)
+        credit_rating_impact = credit_rate.predict(scaled_inputs)
        
         news_input =[news]
         
@@ -151,7 +152,10 @@ if selected == 'Investment Risk Prediction':
         predicted_sentiment =sentiment_map[predicted_class]
 
         extra_features = np.array([[credit_rating_impact, predicted_sentiment]])
-        input_with_predictions = np.concatenate((extra_features, scaled_input, extra_features), axis=1)
+        scaled_inputs_trimmed = scaled_inputs[:, :-4]
+        
+
+        input_with_predictions = np.concatenate((extra_features[0], scaled_inputs_trimmed, extra_features[1]), axis=1)
 
         # input_with_predictions = np.concatenate((input_vector, np.array([[credit_rating_impact, predicted_sentiment]])), axis=1)
 
