@@ -124,18 +124,15 @@ if selected == 'Investment Risk Prediction':
         # Assuming Market and Region are categorical variables
         market_input_array = np.array([market_input]).reshape(1, -1)
         region_input_array = np.array([list(region_input.values())]).reshape(1, -1)
-        numerical_inputs_array = np.array(numerical_inputs).reshape(1, -1)
-        input_vector = np.concatenate((market_input_array, region_input_array, numerical_inputs_array), axis=1)
+        # numerical_inputs_array = np.array(numerical_inputs).reshape(1, -1)
 
         scaled_inputs = scaler.transform([numerical_inputs])
-        news_input =[news]
-        preprocess_user_input(news_input)
-
-
-        input_vector = np.concatenate((scaled_inputs, categorical_data_encoded), axis=1)
-
+        input_vector = np.concatenate((scaled_inputs,market_input_array,region_input_array), axis=1)
         # Predict using the model
         credit_rating_impact = credit_rate.predict(input_vector)
+       
+        news_input =[news]
+        
 
         tokenizer = DistilBertTokenizer.from_pretrained(tokenizer_path)
 
@@ -154,7 +151,7 @@ if selected == 'Investment Risk Prediction':
         predicted_sentiment =sentiment_map[predicted_class]
 
         extra_features = np.array([[credit_rating_impact, predicted_sentiment]])
-        input_with_predictions = np.concatenate((extra_features, input_vector, extra_features), axis=1)
+        input_with_predictions = np.concatenate((extra_features, scaled_input, extra_features), axis=1)
 
         # input_with_predictions = np.concatenate((input_vector, np.array([[credit_rating_impact, predicted_sentiment]])), axis=1)
 
