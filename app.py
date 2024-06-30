@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 import pickle
 import numpy as np
-from transformers import DistilBertTokenizer, TFDistilBertForSequenceClassification
+from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
 import torch
 import os
 st.set_page_config(page_title="InvestiWise",
@@ -137,10 +137,10 @@ if selected == 'Investment Risk Prediction':
         news_input =[news]
         
 
-        tokenizer = DistilBertTokenizer.from_pretrained(tokenizer_path)
+       tokenizer = DistilBertTokenizer.from_pretrained(tokenizer_path)
 
 
-        model = TFDistilBertForSequenceClassification.from_pretrained(model_path, from_tf=True)
+        model = DistilBertForSequenceClassification.from_pretrained(model_path, from_tf=True)
         inputs = tokenizer(news, return_tensors="pt", truncation=True, padding=True, max_length=512)
 
         # Perform the prediction
