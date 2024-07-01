@@ -155,7 +155,7 @@ if selected == 'Investment Risk Prediction':
         extra_features = np.array([[credit_rating_impact, predicted_sentiment]])
         scaled_inputs_trimmed = scaled_inputs[:, :-4]
 
-        input_with_predictions = np.concatenate((extra_features[0], scaled_inputs_trimmed, extra_features[1]), axis=1)
+        input_with_predictions = np.concatenate(([credit_rating_impact], scaled_inputs_trimmed.flatten(), [predicted_sentiment]))
 
         # input_with_predictions = np.concatenate((input_vector, np.array([[credit_rating_impact, predicted_sentiment]])), axis=1)
 
