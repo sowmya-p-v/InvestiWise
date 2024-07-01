@@ -5,14 +5,13 @@ import numpy as np
 from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
 import torch
 import os
-import tensorflow as tf
+
 
 st.set_page_config(page_title="InvestiWise",
                    layout="wide",
                    page_icon=" ")
 placeholder=st.image(r"C:\Users\sowmy\Downloads\istockphoto-1297492947-612x612.jpg")
-# st.write(f'tensorflow: {tf.__version__}')
-# st.write(f'streamlit: {st.__version__}')
+
 
 
 working_dir = os.path.dirname(os.path.abspath(__file__))
@@ -25,8 +24,8 @@ working_dir = os.path.dirname(os.path.abspath(__file__))
 credit_rate =  pickle.load(open(f'{working_dir}/models/Credit_rating _model.pkl', 'rb'))
 # encoder=  pickle.load(open(f'{working_dir}//models/encoder.pkl', 'rb'))
 scaler = pickle.load(open(f'{working_dir}/models/min_max_scaler.pkl', 'rb'))
-model_path = model_path = os.path.join(working_dir, 'models/saved_model')  
-tokenizer_path =model_path = os.path.join(working_dir, 'models/DistilBert_Tokenizer')
+model_path = os.path.join(working_dir, 'models/saved_model')  
+tokenizer_path =os.path.join(working_dir, 'models/DistilBert_Tokenizer')
 invest = pickle.load(open(f'{working_dir}/models/investment_risk_model.pkl', 'rb'))
 with st.sidebar:
     selected = option_menu("Comprehensive Investment Risk Analysis",
