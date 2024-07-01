@@ -154,19 +154,19 @@ if selected == 'Investment Risk Prediction':
         combined_ESG = total_E + total_S + total_G
     
        # Define thresholds and conditions
-       if credit_rating_impact == 0 and predicted_sentiment == 1 and combined_ESG > 35:
-         st.write("Low to Moderate Investment Risk - Stable Financial Health with Positive News and Moderate ESG Score")
+        if credit_rating_impact == 0 and predicted_sentiment == 1 and combined_ESG > 35:
+                st.write("Low to Moderate Investment Risk - Stable Financial Health with Positive News and Moderate ESG Score")
     
-       elif credit_rating_impact == 1 and predicted_sentiment == -1 and combined_ESG > 45:
-         st.write("High Investment Risk - Potential Financial Instability with Negative News and High ESG Score")
+        elif credit_rating_impact == 1 and predicted_sentiment == -1 and combined_ESG > 45:
+                st.write("High Investment Risk - Potential Financial Instability with Negative News and High ESG Score")
     
-       elif credit_rating_impact == 0 and predicted_sentiment == 1 and combined_ESG <= 35:
-         st.write("Low to Moderate Investment Risk - Stable Financial Health with Positive News but Low ESG Score")
+        elif credit_rating_impact == 0 and predicted_sentiment == 1 and combined_ESG <= 35:
+                st.write("Low to Moderate Investment Risk - Stable Financial Health with Positive News but Low ESG Score")
     
-       elif credit_rating_impact == 1 and predicted_sentiment == -1 and combined_ESG <= 45:
-         st.write("High Investment Risk - Potential Financial Instability with Negative News but Moderate ESG Score")
-       else:
-         st.warning("Inputs not clearly defined")
+        elif credit_rating_impact == 1 and predicted_sentiment == -1 and combined_ESG <= 45:
+                st.write("High Investment Risk - Potential Financial Instability with Negative News but Moderate ESG Score")
+        else:
+                st.warning("Inputs not clearly defined")
 
         # credit_rating_impact_array = np.array([credit_rating_impact]).reshape(1, 1)
         # predicted_sentiment_array = np.array([predicted_sentiment]).reshape(1, 1)
