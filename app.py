@@ -163,7 +163,7 @@ if selected == 'Investment Risk Prediction':
 
         # input_with_predictions = np.concatenate((input_vector, np.array([[credit_rating_impact, predicted_sentiment]])), axis=1)
 
-        invesment_risk = invest(input_with_predictions)
+        invesment_risk = invest.predict(input_with_predictions)
         descriptions = {
             0: "Stable Financials, ESG Positive with Positive News Impact - Low to Moderate Investment Risk",
             1: "Stable Financials with Negative News Impact - Low to Moderate Investment Risk",
