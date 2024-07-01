@@ -6,14 +6,14 @@ from transformers import DistilBertTokenizer, DistilBertForSequenceClassificatio
 import torch
 import os
 import tensorflow as tf
-import transformers
+import transformers as ts
 st.set_page_config(page_title="InvestiWise",
                    layout="wide",
                    page_icon=" ")
 placeholder=st.image(r"C:\Users\sowmy\Downloads\istockphoto-1297492947-612x612.jpg")
 st.write(f'tensorflow: {tf.__version__}')
 st.write(f'streamlit: {st.__version__}')
-st.write(transformers.__version__)
+st.write(f'transformers: {ts.__version__}')
 
 working_dir = os.path.dirname(os.path.abspath(__file__))
 
