@@ -6,13 +6,16 @@ from transformers import DistilBertTokenizer, DistilBertForSequenceClassificatio
 import torch
 import os
 
+
 st.set_page_config(page_title="InvestiWise",
                    layout="wide",
                    page_icon=" ")
 placeholder = st.image(r"C:\Users\sowmy\Downloads\istockphoto-1297492947-612x612.jpg")
 
-working_dir = os.path.dirname(os.path.abspath(__file__))
 
+working_dir = os.path.dirname(os.path.abspath(__file__))
+rule_based_path = os.path.join(working_dir, 'rule_based.py')
+from rule_based import predict_investment_risk
 # st.image(r"C:\Users\sowmy\Downloads\istockphoto-1297492947-612x612.jpg")
 # st.sidebar.title("Enter the credentials")
 # st.sidebar.text_input("Enter user name")
@@ -151,10 +154,11 @@ if selected == 'Investment Risk Prediction':
         # Map class to sentiment
         sentiment_map = {0: -1, 1: 0, 2: 1}
         predicted_sentiment = sentiment_map[predicted_class]
-        combined_ESG = Total_E + Total_S + Total_G
+        # combined_ESG = Total_E + Total_S + Total_G
     
-        # conditions
         
+        investment_risk=predict_investment_risk((credit_rating_impact,Total_E,Total_S,Total_G,predicted_sentiment)
+        st.write(investment_risk)
 
         # credit_rating_impact_array = np.array([credit_rating_impact]).reshape(1, 1)
         # predicted_sentiment_array = np.array([predicted_sentiment]).reshape(1, 1)
