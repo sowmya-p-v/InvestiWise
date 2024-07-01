@@ -6,6 +6,7 @@ from transformers import DistilBertTokenizer, DistilBertForSequenceClassificatio
 import torch
 import os
 import tensorflow as tf
+import transformers
 st.set_page_config(page_title="InvestiWise",
                    layout="wide",
                    page_icon=" ")
