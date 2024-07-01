@@ -159,7 +159,7 @@ if selected == 'Investment Risk Prediction':
         input_with_predictions = np.hstack((credit_rating_impact_array, scaled_inputs_trimmed, predicted_sentiment_array))
 
         input_with_predictions = input_with_predictions.reshape(1, -1)
-        st.write("Shape of input_with_predictions:", input_with_predictions.shape)
+        # st.write("Shape of input_with_predictions:", input_with_predictions.shape)
 
         # input_with_predictions = np.concatenate((input_vector, np.array([[credit_rating_impact, predicted_sentiment]])), axis=1)
 
@@ -172,7 +172,7 @@ if selected == 'Investment Risk Prediction':
             4: "High Risk, ESG neutral with Negative News Impact - High Investment Risk considering Financial Health"
         }
         try:
-            predicted_description = descriptions[investment_risk]
+            predicted_description = descriptions[investment_risk[0]]
         except KeyError:
             predicted_description = "Unknown Investment Risk"
 
