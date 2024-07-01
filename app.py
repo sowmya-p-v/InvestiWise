@@ -107,7 +107,7 @@ if selected == 'Investment Risk Prediction':
         predictions = st.button('Predict')
 
     if predictions:
-        # st.warning("Work under progress...!")
+       
         if Market == 'Emerging Market':
             market_input = 1
         else:
