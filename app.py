@@ -5,6 +5,7 @@ import numpy as np
 from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
 import torch
 import os
+import tensorflow as tf
 st.set_page_config(page_title="InvestiWise",
                    layout="wide",
                    page_icon=" ")
