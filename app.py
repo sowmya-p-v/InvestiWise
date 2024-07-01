@@ -151,7 +151,7 @@ if selected == 'Investment Risk Prediction':
         # Map class to sentiment
         sentiment_map = {0: -1, 1: 0, 2: 1}
         predicted_sentiment = sentiment_map[predicted_class]
-        combined_ESG = total_E + total_S + total_G
+        combined_ESG = Total_E + Total_S + Total_G
     
        # Define thresholds and conditions
         if credit_rating_impact == 0 and predicted_sentiment == 1 and combined_ESG > 35:
