@@ -156,7 +156,7 @@ if selected == 'Investment Risk Prediction':
         predicted_sentiment_array = np.array([predicted_sentiment]).reshape(1, 1)
         scaled_inputs_trimmed = scaled_inputs[:, :-4]
 
-        input_with_predictions = np.hstack((credit_rating_impact_array, scaled_inputs, predicted_sentiment_array))
+        input_with_predictions = np.hstack((credit_rating_impact_array, scaled_inputs_trimmed, predicted_sentiment_array))
 
         input_with_predictions = input_with_predictions.reshape(1, -1)
         st.write("Shape of input_with_predictions:", input_with_predictions.shape)
