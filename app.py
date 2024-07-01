@@ -157,7 +157,7 @@ if selected == 'Investment Risk Prediction':
         # combined_ESG = Total_E + Total_S + Total_G
     
         
-        investment_risk=predict_investment_risk((credit_rating_impact,Total_E,Total_S,Total_G,predicted_sentiment)
+        investment_risk=predict_investment_risk(credit_rating_impact,Total_E,Total_S,Total_G,predicted_sentiment)
         st.write(investment_risk)
 
         # credit_rating_impact_array = np.array([credit_rating_impact]).reshape(1, 1)
