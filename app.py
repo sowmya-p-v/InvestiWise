@@ -12,6 +12,7 @@ st.set_page_config(page_title="InvestiWise",
 placeholder=st.image(r"C:\Users\sowmy\Downloads\istockphoto-1297492947-612x612.jpg")
 st.write(f'tensorflow: {tf.__version__}')
 st.write(f'streamlit: {st.__version__}')
+st.write(transformers.__version__)
 
 working_dir = os.path.dirname(os.path.abspath(__file__))
 
