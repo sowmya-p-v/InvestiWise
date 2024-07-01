@@ -23,7 +23,7 @@ credit_rate = pickle.load(open(f'{working_dir}/models/Credit_rating _model.pkl',
 scaler = pickle.load(open(f'{working_dir}/models/min_max_scaler.pkl', 'rb'))
 model_path = os.path.join(working_dir, 'models/saved_model')
 tokenizer_path = os.path.join(working_dir, 'models/DistilBert_Tokenizer')
-invest = pickle.load(open(f'{working_dir}/models/investment_risk_model.pkl', 'rb'))
+# invest = pickle.load(open(f'{working_dir}/models/investment_risk_model.pkl', 'rb'))
 with st.sidebar:
     selected = option_menu("Comprehensive Investment Risk Analysis",
                            ['InvestiWise:',
@@ -153,20 +153,8 @@ if selected == 'Investment Risk Prediction':
         predicted_sentiment = sentiment_map[predicted_class]
         combined_ESG = Total_E + Total_S + Total_G
     
-       # Define thresholds and conditions
-        if credit_rating_impact == 0 and predicted_sentiment == 1 and combined_ESG > 35:
-                st.write("Low to Moderate Investment Risk - Stable Financial Health with Positive News and Moderate ESG Score")
-    
-        elif credit_rating_impact == 1 and predicted_sentiment == -1 and combined_ESG > 45:
-                st.write("High Investment Risk - Potential Financial Instability with Negative News and High ESG Score")
-    
-        elif credit_rating_impact == 0 and predicted_sentiment == 1 and combined_ESG <= 35:
-                st.write("Low to Moderate Investment Risk - Stable Financial Health with Positive News but Low ESG Score")
-    
-        elif credit_rating_impact == 1 and predicted_sentiment == -1 and combined_ESG <= 45:
-                st.write("High Investment Risk - Potential Financial Instability with Negative News but Moderate ESG Score")
-        else:
-                st.warning("Inputs not clearly defined")
+        # conditions
+        
 
         # credit_rating_impact_array = np.array([credit_rating_impact]).reshape(1, 1)
         # predicted_sentiment_array = np.array([predicted_sentiment]).reshape(1, 1)
