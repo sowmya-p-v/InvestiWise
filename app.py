@@ -152,10 +152,12 @@ if selected == 'Investment Risk Prediction':
         sentiment_map = {0: -1, 1: 0, 2: 1}
         predicted_sentiment = sentiment_map[predicted_class]
 
-        extra_features = np.array([[credit_rating_impact, predicted_sentiment]])
+        credit_rating_impact_array = np.array([credit_rating_impact])
+        predicted_sentiment_array = np.array([predicted_sentiment])
         scaled_inputs_trimmed = scaled_inputs[:, :-4]
 
-        input_with_predictions = np.concatenate(([credit_rating_impact], scaled_inputs_trimmed.flatten(), [predicted_sentiment]))
+        input_with_predictions = np.concatenate((credit_rating_impact_array, scaled_inputs_trimmed.flatten(), predicted_sentiment_array))
+        input_with_predictions = input_with_predictions.reshape(1, -1)
 
         # input_with_predictions = np.concatenate((input_vector, np.array([[credit_rating_impact, predicted_sentiment]])), axis=1)
 
