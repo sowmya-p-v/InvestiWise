@@ -34,7 +34,7 @@ with st.sidebar:
                            default_index=0
                            )
 if selected == 'InvestiWise':
-# st.write("hbfjfkgbfgb")
+  st.write("hbfjfkgbfgb")
 
 
 if selected == 'Investment Risk Prediction':
