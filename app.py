@@ -151,32 +151,48 @@ if selected == 'Investment Risk Prediction':
         # Map class to sentiment
         sentiment_map = {0: -1, 1: 0, 2: 1}
         predicted_sentiment = sentiment_map[predicted_class]
+        combined_ESG = total_E + total_S + total_G
+    
+       # Define thresholds and conditions
+       if credit_rating_impact == 0 and predicted_sentiment == 1 and combined_ESG > 35:
+         st.write("Low to Moderate Investment Risk - Stable Financial Health with Positive News and Moderate ESG Score")
+    
+       elif credit_rating_impact == 1 and predicted_sentiment == -1 and combined_ESG > 45:
+         st.write("High Investment Risk - Potential Financial Instability with Negative News and High ESG Score")
+    
+       elif credit_rating_impact == 0 and predicted_sentiment == 1 and combined_ESG <= 35:
+         st.write("Low to Moderate Investment Risk - Stable Financial Health with Positive News but Low ESG Score")
+    
+       elif credit_rating_impact == 1 and predicted_sentiment == -1 and combined_ESG <= 45:
+         st.write("High Investment Risk - Potential Financial Instability with Negative News but Moderate ESG Score")
+       else:
+         st.warning("Inputs not clearly defined")
 
-        credit_rating_impact_array = np.array([credit_rating_impact]).reshape(1, 1)
-        predicted_sentiment_array = np.array([predicted_sentiment]).reshape(1, 1)
-        scaled_inputs_trimmed = scaled_inputs[:, :-4]
+        # credit_rating_impact_array = np.array([credit_rating_impact]).reshape(1, 1)
+        # predicted_sentiment_array = np.array([predicted_sentiment]).reshape(1, 1)
+        # scaled_inputs_trimmed = scaled_inputs[:, :-4]
 
-        input_with_predictions = np.hstack((credit_rating_impact_array, scaled_inputs_trimmed, predicted_sentiment_array))
+        # input_with_predictions = np.hstack((credit_rating_impact_array, scaled_inputs_trimmed, predicted_sentiment_array))
 
-        input_with_predictions = input_with_predictions.reshape(1, -1)
-        # st.write("Shape of input_with_predictions:", input_with_predictions.shape)
+        # input_with_predictions = input_with_predictions.reshape(1, -1)
+        # # st.write("Shape of input_with_predictions:", input_with_predictions.shape)
 
-        # input_with_predictions = np.concatenate((input_vector, np.array([[credit_rating_impact, predicted_sentiment]])), axis=1)
+        # # input_with_predictions = np.concatenate((input_vector, np.array([[credit_rating_impact, predicted_sentiment]])), axis=1)
 
-        investment_risk = invest.predict(input_with_predictions)
-        descriptions = {
-            0: "Stable Financials, ESG Positive with Positive News Impact - Low to Moderate Investment Risk",
-            1: "Stable Financials with Negative News Impact - Low to Moderate Investment Risk",
-            2: "High Risk, ESG Positive with Positive News Impact - High Investment Risk considering Financial Health",
-            3: "Stable Financials, ESG neutral with Positive News Impact - Low to Moderate Investment Risk",
-            4: "High Risk, ESG neutral with Negative News Impact - High Investment Risk considering Financial Health"
-        }
-        try:
-            predicted_description = descriptions[investment_risk[0]]
-        except KeyError:
-            predicted_description = "Unknown Investment Risk"
+        # investment_risk = invest.predict(input_with_predictions)
+        # descriptions = {
+        #     0: "Stable Financials, ESG Positive with Positive News Impact - Low to Moderate Investment Risk",
+        #     1: "Stable Financials with Negative News Impact - Low to Moderate Investment Risk",
+        #     2: "High Risk, ESG Positive with Positive News Impact - High Investment Risk considering Financial Health",
+        #     3: "Stable Financials, ESG neutral with Positive News Impact - Low to Moderate Investment Risk",
+        #     4: "High Risk, ESG neutral with Negative News Impact - High Investment Risk considering Financial Health"
+        # }
+        # try:
+        #     predicted_description = descriptions[investment_risk[0]]
+        # except KeyError:
+        #     predicted_description = "Unknown Investment Risk"
 
-        st.write(predicted_description)
+        # st.write(predicted_description)
 
     st.success(invest_pred)
 
