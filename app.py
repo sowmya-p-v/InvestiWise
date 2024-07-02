@@ -27,7 +27,7 @@ credit_rate = pickle.load(open(f'{working_dir}/models/Credit_rating _model.pkl',
 scaler = pickle.load(open(f'{working_dir}/models/min_max_scaler.pkl', 'rb'))
 model_path = os.path.join(working_dir, 'models/saved_model')
 tokenizer_path = os.path.join(working_dir, 'models/DistilBert_Tokenizer')
-df = pd.read_csv(os.path.join(working_dir, 'Datasets/Visual_ESG_DATASET.csv'))
+
 # invest = pickle.load(open(f'{working_dir}/models/investment_risk_model.pkl', 'rb'))
 with st.sidebar:
     selected = option_menu("Comprehensive Investment Risk Analysis",
@@ -195,7 +195,7 @@ elif selected == 'Data Viewer':
     st.title('Detailed View')
     
     
-
+    df = pd.read_csv(os.path.join(working_dir, 'Datasets/Visual_ESG_DATASET.csv'))
     df_subset = df.sample(n=1000, random_state=42).set_index('Company')
     
     # df_subset = df.sample(n=1000, random_state=42)
