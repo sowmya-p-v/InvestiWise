@@ -197,23 +197,24 @@ elif selected == 'Data Viewer':
     
 
     df_subset = df.sample(n=1000, random_state=42)
+    st.dataframe(df_subset, use_container_width=True)
     # df_subset = df.sample(n=1000, random_state=42)
     col1,col2,col3 = st.columns([1,2,1])
     with col1:
-      company = st.selectbox('Select Company (optional)', ['None'] + list(df_subset['Company'].unique()))
+      company = st.selectbox('Select Company (optional)', [' '] + list(df_subset['Company'].unique()))
       if company != 'None':
         filtered_df = df_subset[df_subset['Company'] == company]
       else:
         with col2:
-          market = st.multiselect('Select Market', df_subset['Market'].unique(), df_subset['Market'].unique())
+          market = st.multiselect('Select Market', df_subset['Market'].unique(), market)
         with col3:
-          sector = st.multiselect('Select Sector', df_subset['Sector'].unique(), df_subset['Sector'].unique())
+          sector = st.multiselect('Select Sector', df_subset['Sector'].unique(), sector)
     filtered_df = df_subset[
     (df_subset['Market'].isin(market)) &
     (df_subset['Sector'].isin(sector))
           ]
     if not filtered_df.empty:
-       st.write(filtered_df[['Company', 'Market', 'Sector', 'COUNTRY_RISK_MARKET_RETURN', 
+       st.write(filtered_df[['Company', 'Region','Market', 'Sector', 'COUNTRY_RISK_MARKET_RETURN', 
                                          'COUNTRY_RISK_RFR', 'COUNTRY_RISK_PREMIUM','GROSS_MARGIN','OPER_MARGIN','EPS_GROWTH',
                                          'UNLEVERED_BETA','WACC','Credit rating impact',
                                           'Total E', 'Total S', 'Total G']])
