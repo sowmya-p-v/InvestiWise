@@ -41,7 +41,7 @@ if selected == 'InvestiWise':
   st.write("hbfjfkgbfgb")
 
 
-if selected == 'Investment Risk Prediction':
+elif selected == 'Investment Risk Prediction':
     placeholder.empty()
     st.title('Investment Risk Prediction using ML')
     col1, col2, col3 = st.columns([1, 2, 1])
@@ -67,7 +67,7 @@ if selected == 'Investment Risk Prediction':
             Risk_Premium = st.slider('Risk Premium', 0.00, 15.00)
         else:
             st.warning('Change the Market type to Developed Markets')
-    elif Market == 'Developed Markets':
+    if Market == 'Developed Markets':
         if Region == 'Americas':
             Country_risk_market_return = st.slider('Country Risk Market Return', 0.0, 15.00)
             Country_risk_premium = st.slider('Country Risk Premium', 0.0, 15.0)
@@ -188,7 +188,7 @@ if selected == 'Investment Risk Prediction':
         # st.write(predicted_description)
 
     st.success(invest_pred)
-if selected == 'Investment Risk Prediction':
+elif selected == 'Data Viewer':
     placeholder.empty()
           # placeholder.empty()
     st.title('Detailed View')
