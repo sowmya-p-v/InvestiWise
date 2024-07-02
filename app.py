@@ -197,7 +197,7 @@ elif selected == 'Data Viewer':
     
     
     
-    df_subset = df.sample(n=1000, random_state=42).set_index('Company')
+    df_subset = df.sample(n=1000, random_state=42)
     
     # df_subset = df.sample(n=1000, random_state=42)
     col1,col2,col3 = st.columns([1,2,1])
