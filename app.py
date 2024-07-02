@@ -201,16 +201,16 @@ if selected == 'Investment Risk Prediction':
           else:
                   market = st.sidebar.multiselect('Select Market', df_subset['MARKET'].unique(), df_subset['MARKET'].unique())
                   sector = st.sidebar.multiselect('Select Sector', df_subset['SECTOR'].unique(), df_subset['SECTOR'].unique())
-         filtered_df = df_subset[
-                      (df_subset['MARKET'].isin(market)) &
-                       (df_subset['SECTOR'].isin(sector))
-         ]
-         if not filtered_df.empty:
+          filtered_df = df_subset[
+                         (df_subset['MARKET'].isin(market)) &
+                         (df_subset['SECTOR'].isin(sector))
+            ]
+          if not filtered_df.empty:
                  st.write(filtered_df[['COMPANY', 'MARKET', 'SECTOR', 'COUNTRY_MARKET_RISK_RETURN', 
                                        'COUNTRY_RFR', 'COUNTRY_RISK_PREMIUM','GROSS_MARGIN','OPER_MARGIN','EPS_GROWTH',
                                        'UNLEVERED_BETA','WACC','Credit rating impact',
                                         'TOTAL_E', 'TOTAL_S', 'TOTAL_G']])
-         else:
+          else:
                  st.write("No data available for the selected filters.")
      
     
