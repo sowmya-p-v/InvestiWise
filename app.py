@@ -198,13 +198,16 @@ elif selected == 'Data Viewer':
 
     df_subset = df.sample(n=1000, random_state=42)
     # df_subset = df.sample(n=1000, random_state=42)
-  
-    company = st.sidebar.selectbox('Select Company (optional)', ['None'] + list(df_subset['Company'].unique()))
-    if company != 'None':
-       filtered_df = df_subset[df_subset['Company'] == company]
-    else:
-       market = st.sidebar.multiselect('Select Market', df_subset['Market'].unique(), df_subset['Market'].unique())
-       sector = st.sidebar.multiselect('Select Sector', df_subset['Sector'].unique(), df_subset['Sector'].unique())
+    col1,col2,col3 = columns([1,2,1])
+    with col1:
+      company = st.selectbox('Select Company (optional)', ['None'] + list(df_subset['Company'].unique()))
+      if company != 'None':
+        filtered_df = df_subset[df_subset['Company'] == company]
+      else:
+        with col2:
+          market = st.multiselect('Select Market', df_subset['Market'].unique(), df_subset['Market'].unique())
+        with col3:
+          sector = st.multiselect('Select Sector', df_subset['Sector'].unique(), df_subset['Sector'].unique())
     filtered_df = df_subset[
     (df_subset['Market'].isin(market)) &
     (df_subset['Sector'].isin(sector))
@@ -213,7 +216,7 @@ elif selected == 'Data Viewer':
        st.write(filtered_df[['Company', 'Market', 'Sector', 'COUNTRY_RISK_MARKET_RETURN', 
                                          'COUNTRY_RISK_RFR', 'COUNTRY_RISK_PREMIUM','GROSS_MARGIN','OPER_MARGIN','EPS_GROWTH',
                                          'UNLEVERED_BETA','WACC','Credit rating impact',
-                                          'TOTAL_E', 'TOTAL_S', 'TOTAL_G']])
+                                          'Total E', 'Total S', 'Total G']])
     else:
        st.write("No data available for the selected filters.")
        
