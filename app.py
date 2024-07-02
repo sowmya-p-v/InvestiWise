@@ -198,7 +198,7 @@ elif selected == 'Data Viewer':
 
     df_subset = df.sample(n=1000, random_state=42)
     # df_subset = df.sample(n=1000, random_state=42)
-    col1,col2,col3 = columns([1,2,1])
+    col1,col2,col3 = st.columns([1,2,1])
     with col1:
       company = st.selectbox('Select Company (optional)', ['None'] + list(df_subset['Company'].unique()))
       if company != 'None':
