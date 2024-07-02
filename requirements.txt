@@ -5,3 +5,4 @@ streamlit-option-menu==0.3.6
 transformers 
 torch 
 tensorflow==2.15.0
+pandas
