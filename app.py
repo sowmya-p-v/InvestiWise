@@ -207,9 +207,9 @@ elif selected == 'Data Viewer':
         filtered_df = df_subset[df_subset['Company'] == company]
       else:
         with col2:
-          market = st.multiselect('Select Market', df_subset['Market'].unique(), market)
+          market = st.multiselect('Select Market', df_subset['Market'].unique())
         with col3:
-          sector = st.multiselect('Select Sector', df_subset['Sector'].unique(), sector)
+          sector = st.multiselect('Select Sector', df_subset['Sector'].unique())
     filtered_df = df_subset[
     (df_subset['Market'].isin(market)) &
     (df_subset['Sector'].isin(sector))
