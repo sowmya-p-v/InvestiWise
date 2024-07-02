@@ -192,7 +192,7 @@ if selected == 'Investment Risk Prediction':
           placeholder.empty()
           st.title('Detailed View')
           df_subset = df.sample(n=1000, random_state=42)
-          df= pd.read_csv(os.path.join(working_dir, 'Datasets/Visual_ESG_DATASET')
+          df= pd.read_csv(os.path.join(working_dir, 'Datasets/Visual_ESG_DATASET'))
           df_subset = df.sample(n=1000, random_state=42)
 
           company = st.sidebar.selectbox('Select Company (optional)', ['None'] + list(df_subset['COMPANY'].unique()))
