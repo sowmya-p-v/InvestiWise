@@ -188,31 +188,32 @@ if selected == 'Investment Risk Prediction':
         # st.write(predicted_description)
 
     st.success(invest_pred)
-    if selected == 'Data Viewer':
-          placeholder.empty()
-          st.title('Detailed View')
-          df_subset = df.sample(n=1000, random_state=42)
-          df= pd.read_csv(os.path.join(working_dir, 'Datasets/Visual_ESG_DATASET'))
-          df_subset = df.sample(n=1000, random_state=42)
-
-          company = st.sidebar.selectbox('Select Company (optional)', ['None'] + list(df_subset['COMPANY'].unique()))
-          if company != 'None':
-                  filtered_df = df_subset[df_subset['COMPANY'] == company]
-          else:
-                  market = st.sidebar.multiselect('Select Market', df_subset['MARKET'].unique(), df_subset['MARKET'].unique())
-                  sector = st.sidebar.multiselect('Select Sector', df_subset['SECTOR'].unique(), df_subset['SECTOR'].unique())
-          filtered_df = df_subset[
-                         (df_subset['MARKET'].isin(market)) &
-                         (df_subset['SECTOR'].isin(sector))
-            ]
-          if not filtered_df.empty:
-                 st.write(filtered_df[['COMPANY', 'MARKET', 'SECTOR', 'COUNTRY_MARKET_RISK_RETURN', 
-                                       'COUNTRY_RFR', 'COUNTRY_RISK_PREMIUM','GROSS_MARGIN','OPER_MARGIN','EPS_GROWTH',
-                                       'UNLEVERED_BETA','WACC','Credit rating impact',
-                                        'TOTAL_E', 'TOTAL_S', 'TOTAL_G']])
-          else:
-                 st.write("No data available for the selected filters.")
-     
+if selected == 'Investment Risk Prediction':
+    placeholder.empty()
+          # placeholder.empty()
+    st.title('Detailed View')
+    df_subset = df.sample(n=1000, random_state=42)
+    df= pd.read_csv(os.path.join(working_dir, 'Datasets/Visual_ESG_DATASET'))
+    df_subset = df.sample(n=1000, random_state=42)
+  
+    company = st.sidebar.selectbox('Select Company (optional)', ['None'] + list(df_subset['COMPANY'].unique()))
+    if company != 'None':
+       filtered_df = df_subset[df_subset['COMPANY'] == company]
+    else:
+       market = st.sidebar.multiselect('Select Market', df_subset['MARKET'].unique(), df_subset['MARKET'].unique())
+       sector = st.sidebar.multiselect('Select Sector', df_subset['SECTOR'].unique(), df_subset['SECTOR'].unique())
+    filtered_df = df_subset[
+    (df_subset['MARKET'].isin(market)) &
+    (df_subset['SECTOR'].isin(sector))
+          ]
+    if not filtered_df.empty:
+       st.write(filtered_df[['COMPANY', 'MARKET', 'SECTOR', 'COUNTRY_MARKET_RISK_RETURN', 
+                                         'COUNTRY_RFR', 'COUNTRY_RISK_PREMIUM','GROSS_MARGIN','OPER_MARGIN','EPS_GROWTH',
+                                         'UNLEVERED_BETA','WACC','Credit rating impact',
+                                          'TOTAL_E', 'TOTAL_S', 'TOTAL_G']])
+    else:
+       st.write("No data available for the selected filters.")
+       
     
            
     
