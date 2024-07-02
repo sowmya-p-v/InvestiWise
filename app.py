@@ -193,7 +193,7 @@ elif selected == 'Data Viewer':
           # placeholder.empty()
     st.title('Detailed View')
     
-    df= pd.read_csv(os.path.join(working_dir, 'Datasets/Visual_ESG_DATASET'))
+    df= pd.read_csv(os.path.join(working_dir, 'blob/main/Datasets/Visual_ESG_DATASET.csv'))
     df_subset = df.sample(n=1000, random_state=42)
     df_subset = df.sample(n=1000, random_state=42)
   
