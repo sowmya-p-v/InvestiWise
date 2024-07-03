@@ -51,24 +51,24 @@ def investment_risk_prediction():
           Risk_Premium = st.slider('Risk Premium', 0.00, 15.00)
       else:
           st.warning('Change the Market type to Developed Markets')
-    if Market == 'Developed Markets':
-        if Region == 'Americas':
-            Country_risk_market_return = st.slider('Country Risk Market Return', 0.0, 15.00)
-            Country_risk_premium = st.slider('Country Risk Premium', 0.0, 15.0)
-            Country_risk_rfr = st.slider('Country Risk free Rate', 0.0, 10.00)
-            Risk_Premium = st.slider('Risk Premium', 0.00, 20.00)
-        elif Region == 'Asia':
-            Country_risk_market_return = st.slider('Country Risk Market Return', 0.0, 15.00)
-            Country_risk_premium = st.slider('Country Risk Premium', 0.0, 15.00)
-            Country_risk_rfr = st.slider('Country Risk free Rate', -1.00, 3.00)
-            Risk_Premium = st.slider('Risk Premium', 0.00, 20.00)
-        elif Region == 'Europe':
-            Country_risk_market_return = st.slider('Country Risk Market Return', 0.0, 20.00)
-            Country_risk_premium = st.slider('Country Risk Premium', 0.0, 15.0)
-            Country_risk_rfr = st.slider('Country Risk free Rate', -1.00, 5.00)
-            Risk_Premium = st.slider('Risk Premium', 0.00, 30.00)
-        else:
-            st.warning('Change the Market type to Emerging Markets')
+  if Market == 'Developed Markets':
+      if Region == 'Americas':
+          Country_risk_market_return = st.slider('Country Risk Market Return', 0.0, 15.00)
+          Country_risk_premium = st.slider('Country Risk Premium', 0.0, 15.0)
+          Country_risk_rfr = st.slider('Country Risk free Rate', 0.0, 10.00)
+          Risk_Premium = st.slider('Risk Premium', 0.00, 20.00)
+      elif Region == 'Asia':
+          Country_risk_market_return = st.slider('Country Risk Market Return', 0.0, 15.00)
+          Country_risk_premium = st.slider('Country Risk Premium', 0.0, 15.00)
+          Country_risk_rfr = st.slider('Country Risk free Rate', -1.00, 3.00)
+          Risk_Premium = st.slider('Risk Premium', 0.00, 20.00)
+      elif Region == 'Europe':
+          Country_risk_market_return = st.slider('Country Risk Market Return', 0.0, 20.00)
+          Country_risk_premium = st.slider('Country Risk Premium', 0.0, 15.0)
+          Country_risk_rfr = st.slider('Country Risk free Rate', -1.00, 5.00)
+          Risk_Premium = st.slider('Risk Premium', 0.00, 30.00)
+      else:
+          st.warning('Change the Market type to Emerging Markets')
 
     Gross_Margin = st.slider('Gross Margin', 0.00, 100.00)
     Is_int_EXP = st.slider('Interest Expense', 0.00, 8500.00, )
