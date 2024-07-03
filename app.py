@@ -238,7 +238,6 @@ def performance_analysis():
     
     st.title('Performance Analysis')
     companies = st.multiselect('Select Companies (up to two)', list(df['Company'].unique()))
-    
     if len(companies) == 2:
         company1, company2 = companies
         
@@ -250,20 +249,39 @@ def performance_analysis():
         # Financial Metrics Comparison
         st.subheader('Financial Metrics Comparison')
         metrics = ['GROSS_MARGIN', 'OPER_MARGIN', 'EPS_GROWTH', 'UNLEVERED_BETA', 'WACC']
-        for metric in metrics:
-            st.bar_chart({company1: company1_data[metric].mean(), company2: company2_data[metric].mean()})
+        colors = sns.color_palette('pastel', len(metrics))
+        fig, ax = plt.subplots(figsize=(10, 6))
+        
+        for i, metric in enumerate(metrics):
+            ax.bar([company1, company2], [company1_data[metric].mean(), company2_data[metric].mean()], label=metric, color=colors[i])
+        
+        ax.set_ylabel('Mean Value')
+        ax.set_title('Financial Metrics')
+        ax.legend()
+        st.pyplot(fig)
         
         # ESG Scores Comparison
         st.subheader('ESG Scores Comparison')
         esg_metrics = ['Total E', 'Total S', 'Total G']
-        for esg_metric in esg_metrics:
-            st.area_chart({company1: company1_data[esg_metric].mean(), company2: company2_data[esg_metric].mean()})
+        colors = sns.color_palette('pastel', len(esg_metrics))
+        fig, ax = plt.subplots(figsize=(10, 6))
+        
+        for i, esg_metric in enumerate(esg_metrics):
+            ax.bar([company1, company2], [company1_data[esg_metric].mean(), company2_data[esg_metric].mean()], label=esg_metric, color=colors[i])
+        
+        ax.set_ylabel('Mean Value')
+        ax.set_title('ESG Scores')
+        ax.legend()
+        st.pyplot(fig)
     
     elif len(companies) == 1:
         st.warning('Please select two companies for comparison.')
     
     else:
         st.warning('Select up to two companies.')
+  
+    
+    
 
 # st.set_page_config(page_title='Comprehensive Investment Risk Analysis', page_icon=':bar_chart:', layout='wide')
 
