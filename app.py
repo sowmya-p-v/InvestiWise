@@ -15,36 +15,42 @@ st.set_page_config(page_title="InvestiWise",
 placeholder = st.image(r"C:\Users\sowmy\Downloads\istockphoto-1297492947-612x612.jpg")
 
 
-working_dir = os.path.dirname(os.path.abspath(__file__))
-rule_based_path = os.path.join(working_dir, 'rule_based.py')
-from rule_based import predict_investment_risk
+# working_dir = os.path.dirname(os.path.abspath(__file__))
+# rule_based_path = os.path.join(working_dir, 'rule_based.py')
+# from rule_based import predict_investment_risk
 # st.image(r"C:\Users\sowmy\Downloads\istockphoto-1297492947-612x612.jpg")
 # st.sidebar.title("Enter the credentials")
 # st.sidebar.text_input("Enter user name")
 # st.sidebar.text_input("Password")
 # st.sidebar.button("login")
-credit_rate = pickle.load(open(f'{working_dir}/models/Credit_rating _model.pkl', 'rb'))
-# encoder=  pickle.load(open(f'{working_dir}//models/encoder.pkl', 'rb'))
-scaler = pickle.load(open(f'{working_dir}/models/min_max_scaler.pkl', 'rb'))
-model_path = os.path.join(working_dir, 'models/saved_model')
-tokenizer_path = os.path.join(working_dir, 'models/DistilBert_Tokenizer')
-df = pd.read_csv(os.path.join(working_dir, 'Datasets/Visual_ESG_DATASET.csv'))
+# credit_rate = pickle.load(open(f'{working_dir}/models/Credit_rating _model.pkl', 'rb'))
+# scaler = pickle.load(open(f'{working_dir}/models/min_max_scaler.pkl', 'rb'))
+# model_path = os.path.join(working_dir, 'models/saved_model')
+# tokenizer_path = os.path.join(working_dir, 'models/DistilBert_Tokenizer')
+# df = pd.read_csv(os.path.join(working_dir, 'Datasets/Visual_ESG_DATASET.csv'))
+# with st.sidebar:
+#     selected = option_menu("Comprehensive Investment Risk Analysis",
+#                            ['InvestiWise:',
+#                             'Investment Risk Prediction',
+#                             'Data Viewer',
+#                             'Performance Analysis'],
+#                            icons=['', 'graph-up-arrow', 'file-text', 'bar-chart'],
+#                            default_index=0
+#                            )
+def home():
+    st.title("InvestiWise")
+    st.write("Welcome to InvestiWise: A sustainable Investment Dashboard")
+    placeholder = st.image(r"C:\Users\sowmy\Downloads\istockphoto-1297492947-612x612.jpg")
 
-# invest = pickle.load(open(f'{working_dir}/models/investment_risk_model.pkl', 'rb'))
-with st.sidebar:
-    selected = option_menu("Comprehensive Investment Risk Analysis",
-                           ['InvestiWise:',
-                            'Investment Risk Prediction',
-                            'Data Viewer',
-                            'Performance Analysis'],
-                           icons=['', 'graph-up-arrow', 'file-text', 'bar-chart'],
-                           default_index=0
-                           )
-if selected == 'InvestiWise':
-  st.write("hbfjfkgbfgb")
 
-
-elif selected == 'Investment Risk Prediction':
+def investment_risk_prediction():
+    working_dir = os.path.dirname(os.path.abspath(__file__))
+    rule_based_path = os.path.join(working_dir, 'rule_based.py')
+    from rule_based import predict_investment_risk
+    credit_rate = pickle.load(open(f'{working_dir}/models/Credit_rating _model.pkl', 'rb'))
+    scaler = pickle.load(open(f'{working_dir}/models/min_max_scaler.pkl', 'rb'))
+    model_path = os.path.join(working_dir, 'models/saved_model')
+    tokenizer_path = os.path.join(working_dir, 'models/DistilBert_Tokenizer')
     placeholder.empty()
     st.title('Investment Risk Prediction using ML')
     col1, col2, col3 = st.columns([1, 2, 1])
@@ -191,39 +197,66 @@ elif selected == 'Investment Risk Prediction':
         # st.write(predicted_description)
 
     st.success(invest_pred)
-elif selected == 'Data Viewer':
+def data_viewer():
+    
     placeholder.empty()
-          # placeholder.empty()
     st.title('Detailed View')
-    
-    
-    
+    working_dir = os.path.dirname(os.path.abspath(__file__))
+    df = pd.read_csv(os.path.join(working_dir, 'Datasets/Visual_ESG_DATASET.csv'))
     df_subset = df.sample(n=1000, random_state=42)
     
-    # df_subset = df.sample(n=1000, random_state=42)
-    col1,col2,col3 = st.columns([1,2,1])
+    col1, col2, col3 = st.columns([1, 2, 1])
+    
     with col1:
-      company = st.selectbox('Select Company (optional)', [' '] + list(df_subset['Company'].unique()))
-      if company != 'None':
+        company = st.selectbox('Select Company (optional)', [' '] + list(df_subset['Company'].unique()))
+        
+    if company != ' ':
         filtered_df = df_subset[df_subset['Company'] == company]
-      else:
-        with col2:
-          market = st.multiselect('Select Market', df_subset['Market'].unique())
-        with col3:
-          sector = st.multiselect('Select Sector', df_subset['Sector'].unique())
-    filtered_df = df_subset[
-    (df_subset['Market'].isin(market)) &
-    (df_subset['Sector'].isin(sector))
-          ]
-    if not filtered_df.empty:
-       
-       st.write(filtered_df[['Company', 'Region','Market', 'Sector', 'COUNTRY_RISK_MARKET_RETURN', 
-                                         'COUNTRY_RISK_RFR', 'COUNTRY_RISK_PREMIUM','GROSS_MARGIN','OPER_MARGIN','EPS_GROWTH',
-                                         'UNLEVERED_BETA','WACC','Credit rating impact',
-                                          'Total E', 'Total S', 'Total G']].set_index('Company'))
-       st.dataframe(df_subset, use_container_width=True)
     else:
-       st.write("No data available for the selected filters.")
+        with col2:
+            market = st.multiselect('Select Market', df_subset['Market'].unique())
+        with col3:
+            sector = st.multiselect('Select Sector', df_subset['Sector'].unique())
+        
+        filtered_df = df_subset[
+            (df_subset['Market'].isin(market)) &
+            (df_subset['Sector'].isin(sector))
+        ]
+    
+    if not filtered_df.empty:
+        st.write(filtered_df[['Company', 'Region', 'Market', 'Sector', 'COUNTRY_RISK_MARKET_RETURN', 
+                              'COUNTRY_RISK_RFR', 'COUNTRY_RISK_PREMIUM', 'GROSS_MARGIN', 'OPER_MARGIN', 'EPS_GROWTH',
+                              'UNLEVERED_BETA', 'WACC', 'Credit rating impact', 'Total E', 'Total S', 'Total G']].set_index('Company'))
+    else:
+        st.write("No data available for the selected filters.")
+    
+    st.dataframe(df_subset, use_container_width=True)
+ def performance_analysis():
+     st.title("Performance Analysis")
+     st.write("Detailed performance analysis goes here.")
+
+st.set_page_config(page_title='Comprehensive Investment Risk Analysis', page_icon=':bar_chart:', layout='wide')
+
+with st.sidebar:
+    selected = option_menu(
+        "Main Menu",
+        ["InvestiWise:", "Investment Risk Prediction", "Data Viewer", "Performance Analysis"],
+        icons=["house", "graph-up-arrow", "table", "clipboard-data"],
+        menu_icon="cast",
+        default_index=0,
+    )
+
+if selected == "InvestiWise:":
+    home()
+elif selected == "Investment Risk Prediction":
+    investment_risk_prediction()
+elif selected == "Data Viewer":
+    data_viewer()
+elif selected == "Performance Analysis":
+    performance_analysis()
+   
+
+    
        
     
            
