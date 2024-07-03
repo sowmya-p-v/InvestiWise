@@ -130,33 +130,39 @@ def investment_risk_prediction():
         st.write(investment_risk)
 
 def data_viewer():
-  working_dir = os.path.dirname(os.path.abspath(__file__))
-  placeholder.empty()
-  st.title('Detailed View')
-  df = pd.read_csv(os.path.join(working_dir, 'Datasets/Visual_ESG_DATASET.csv'))
-  df_subset = df.sample(n=1000, random_state=42)
-  col1,col2,col3 = st.columns([1,2,1])
-  with col1:
-     company = st.selectbox('Select Company (optional)', [' '] + list(df_subset['Company'].unique()))
-     if company != 'None':
+    working_dir = os.path.dirname(os.path.abspath(__file__))
+    placeholder.empty()
+    st.title('Detailed View')
+    df = pd.read_csv(os.path.join(working_dir, 'Datasets/Visual_ESG_DATASET.csv'))
+    df_subset = df.sample(n=1000, random_state=42)
+    
+    col1, col2, col3 = st.columns([1, 2, 1])
+    
+    with col1:
+        company = st.selectbox('Select Company (optional)', [' '] + list(df_subset['Company'].unique()))
+        
+    if company != ' ':
         filtered_df = df_subset[df_subset['Company'] == company]
-     else:
+    else:
         with col2:
             market = st.multiselect('Select Market', df_subset['Market'].unique())
         with col3:
             sector = st.multiselect('Select Sector', df_subset['Sector'].unique())
-            filtered_df = df_subset[
+        
+        filtered_df = df_subset[
             (df_subset['Market'].isin(market)) &
             (df_subset['Sector'].isin(sector))
-                ]
+        ]
+    
     if not filtered_df.empty:
-       st.write(filtered_df[['Company', 'Region','Market', 'Sector', 'COUNTRY_RISK_MARKET_RETURN', 
-                                         'COUNTRY_RISK_RFR', 'COUNTRY_RISK_PREMIUM','GROSS_MARGIN','OPER_MARGIN','EPS_GROWTH',
-                                         'UNLEVERED_BETA','WACC','Credit rating impact',
-                                          'Total E', 'Total S', 'Total G']].set_index('Company'))
-        st.dataframe(df_subset, use_container_width=True)
+        st.write(filtered_df[['Company', 'Region', 'Market', 'Sector', 'COUNTRY_RISK_MARKET_RETURN', 
+                              'COUNTRY_RISK_RFR', 'COUNTRY_RISK_PREMIUM', 'GROSS_MARGIN', 'OPER_MARGIN', 'EPS_GROWTH',
+                              'UNLEVERED_BETA', 'WACC', 'Credit rating impact', 'Total E', 'Total S', 'Total G']].set_index('Company'))
     else:
         st.write("No data available for the selected filters.")
+    
+    st.dataframe(df_subset, use_container_width=True)
+
 def performance_analysis():
      working_dir = os.path.dirname(os.path.abspath(__file__))
      df = pd.read_csv(os.path.join(working_dir, 'Datasets/Visual_ESG_DATASET.csv'))
