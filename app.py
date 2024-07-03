@@ -232,8 +232,38 @@ def data_viewer():
     
     # st.dataframe(df_subset, use_container_width=True)
 def performance_analysis():
-    st.title("Performance Analysis")
-    st.write("Detailed performance analysis goes here.")
+    working_dir = os.path.dirname(os.path.abspath(__file__))
+    df = pd.read_csv(os.path.join(working_dir, 'Datasets/Visual_ESG_DATASET.csv'))
+    df = df.sample(n=1000, random_state=42)
+    
+    st.title('Performance Analysis')
+    companies = st.multiselect('Select Companies (up to two)', list(df['Company'].unique()))
+    
+    if len(companies) == 2:
+        company1, company2 = companies
+        
+        company1_data = df[df['Company'] == company1]
+        company2_data = df[df['Company'] == company2]
+        
+        st.header(f'Performance Comparison between {company1} and {company2}')
+        
+        # Financial Metrics Comparison
+        st.subheader('Financial Metrics Comparison')
+        metrics = ['GROSS_MARGIN', 'OPER_MARGIN', 'EPS_GROWTH', 'UNLEVERED_BETA', 'WACC']
+        for metric in metrics:
+            st.bar_chart({company1: company1_data[metric].mean(), company2: company2_data[metric].mean()})
+        
+        # ESG Scores Comparison
+        st.subheader('ESG Scores Comparison')
+        esg_metrics = ['Total E', 'Total S', 'Total G']
+        for esg_metric in esg_metrics:
+            st.area_chart({company1: company1_data[esg_metric].mean(), company2: company2_data[esg_metric].mean()})
+    
+    elif len(companies) == 1:
+        st.warning('Please select two companies for comparison.')
+    
+    else:
+        st.warning('Select up to two companies.')
 
 # st.set_page_config(page_title='Comprehensive Investment Risk Analysis', page_icon=':bar_chart:', layout='wide')
 
