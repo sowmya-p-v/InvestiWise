@@ -230,7 +230,7 @@ def data_viewer():
     else:
         st.write("No data available for the selected filters.")
     
-    st.dataframe(df_subset, use_container_width=True)
+    # st.dataframe(df_subset, use_container_width=True)
 def performance_analysis():
     st.title("Performance Analysis")
     st.write("Detailed performance analysis goes here.")
