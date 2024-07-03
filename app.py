@@ -235,11 +235,11 @@ def performance_analysis():
     st.title("Performance Analysis")
     st.write("Detailed performance analysis goes here.")
 
-st.set_page_config(page_title='Comprehensive Investment Risk Analysis', page_icon=':bar_chart:', layout='wide')
+# st.set_page_config(page_title='Comprehensive Investment Risk Analysis', page_icon=':bar_chart:', layout='wide')
 
 with st.sidebar:
     selected = option_menu(
-        "Main Menu",
+        "Comprehensive Investment Risk Analysis",
         ["InvestiWise:", "Investment Risk Prediction", "Data Viewer", "Performance Analysis"],
         icons=["house", "graph-up-arrow", "table", "clipboard-data"],
         menu_icon="cast",
