@@ -231,9 +231,9 @@ def data_viewer():
         st.write("No data available for the selected filters.")
     
     st.dataframe(df_subset, use_container_width=True)
- def performance_analysis():
-     st.title("Performance Analysis")
-     st.write("Detailed performance analysis goes here.")
+def performance_analysis():
+    st.title("Performance Analysis")
+    st.write("Detailed performance analysis goes here.")
 
 st.set_page_config(page_title='Comprehensive Investment Risk Analysis', page_icon=':bar_chart:', layout='wide')
 
