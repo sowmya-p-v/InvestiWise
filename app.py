@@ -248,7 +248,7 @@ def performance_analysis():
 
         # Define financial metrics to compare
         financial_metrics = ['COUNTRY_RISK_MARKET_RETURN', 'COUNTRY_RISK_RFR', 'COUNTRY_RISK_PREMIUM',
-                             'GROSS_MARGIN', 'OPER_MARGIN', 'EPS_GROWTH', 'UNLEVERED_BETA', 'WACC', 'Credit_rating_impact']
+                             'GROSS_MARGIN', 'OPER_MARGIN', 'EPS_GROWTH', 'UNLEVERED_BETA', 'WACC', 'Credit rating impact']
         
         # Define ESG metrics to compare
         esg_metrics = ['Total E', 'Total S', 'Total G']
