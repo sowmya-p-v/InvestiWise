@@ -28,29 +28,29 @@ def investment_risk_prediction():
   from rule_based import predict_investment_risk
   
   st.title('Investment Risk Prediction using ML')
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col1:
-        Market = st.selectbox("Select Market", ['Emerging Markets', 'Developed Markets'])
-    with col3:
-        Region = st.selectbox("Select Region", ['Americas', 'Asia', 'CEEMEA', 'Europe'])
-    if Market == 'Emerging Markets':
-        if Region == 'Americas':
-            Country_risk_market_return = st.slider('Country Risk Market Return', 0.0, 30.00)
-            Country_risk_premium = st.slider('Country Risk Premium', 0.0, 15.0)
-            Country_risk_rfr = st.slider('Country Risk free Rate', 0.0, 10.00)
-            Risk_Premium = st.slider('Risk Premium', 0.00, 35.00)
-        elif Region == 'Asia':
-            Country_risk_market_return = st.slider('Country Risk Market Return', 0.0, 15.00)
-            Country_risk_premium = st.slider('Country Risk Premium', 0.0, 15.0)
-            Country_risk_rfr = st.slider('Country Risk free Rate', 0.0, 10.00)
-            Risk_Premium = st.slider('Risk Premium', -1.00, 20.00)
-        elif Region == 'CEEMEA':
-            Country_risk_market_return = st.slider('Country Risk Market Return', 0.0, 20.00)
-            Country_risk_premium = st.slider('Country Risk Premium', 0.0, 15.0)
-            Country_risk_rfr = st.slider('Country Risk free Rate', 0.0, 15.00)
-            Risk_Premium = st.slider('Risk Premium', 0.00, 15.00)
-        else:
-            st.warning('Change the Market type to Developed Markets')
+  col1, col2, col3 = st.columns([1, 2, 1])
+  with col1:
+      Market = st.selectbox("Select Market", ['Emerging Markets', 'Developed Markets'])
+  with col3:
+      Region = st.selectbox("Select Region", ['Americas', 'Asia', 'CEEMEA', 'Europe'])
+  if Market == 'Emerging Markets':
+      if Region == 'Americas':
+          Country_risk_market_return = st.slider('Country Risk Market Return', 0.0, 30.00)
+          Country_risk_premium = st.slider('Country Risk Premium', 0.0, 15.0)
+          Country_risk_rfr = st.slider('Country Risk free Rate', 0.0, 10.00)
+          Risk_Premium = st.slider('Risk Premium', 0.00, 35.00)
+      elif Region == 'Asia':
+          Country_risk_market_return = st.slider('Country Risk Market Return', 0.0, 15.00)
+          Country_risk_premium = st.slider('Country Risk Premium', 0.0, 15.0)
+          Country_risk_rfr = st.slider('Country Risk free Rate', 0.0, 10.00)
+          Risk_Premium = st.slider('Risk Premium', -1.00, 20.00)
+      elif Region == 'CEEMEA':
+          Country_risk_market_return = st.slider('Country Risk Market Return', 0.0, 20.00)
+          Country_risk_premium = st.slider('Country Risk Premium', 0.0, 15.0)
+          Country_risk_rfr = st.slider('Country Risk free Rate', 0.0, 15.00)
+          Risk_Premium = st.slider('Risk Premium', 0.00, 15.00)
+      else:
+          st.warning('Change the Market type to Developed Markets')
     if Market == 'Developed Markets':
         if Region == 'Americas':
             Country_risk_market_return = st.slider('Country Risk Market Return', 0.0, 15.00)
