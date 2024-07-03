@@ -238,47 +238,41 @@ def performance_analysis():
     
     st.title('Performance Analysis')
     companies = st.multiselect('Select Companies (up to two)', list(df['Company'].unique()))
+    companies = st.multiselect('Select two companies to compare', df['Company'].unique(), default=['Company A', 'Company B'])
+
     if len(companies) == 2:
         company1, company2 = companies
+
+        # Get data for the selected companies
+        data = df[df['Company'].isin(companies)].set_index('Company')
+
+        # Define financial metrics to compare
+        financial_metrics = ['COUNTRY_RISK_MARKET_RETURN', 'COUNTRY_RISK_RFR', 'COUNTRY_RISK_PREMIUM',
+                             'GROSS_MARGIN', 'OPER_MARGIN', 'EPS_GROWTH', 'UNLEVERED_BETA', 'WACC', 'Credit_rating_impact']
         
-        company1_data = df[df['Company'] == company1]
-        company2_data = df[df['Company'] == company2]
-        
-        st.header(f'Performance Comparison between {company1} and {company2}')
-        
-        # Financial Metrics Comparison
-        st.subheader('Financial Metrics Comparison')
-        metrics = ['GROSS_MARGIN', 'OPER_MARGIN', 'EPS_GROWTH', 'UNLEVERED_BETA', 'WACC']
-        colors = sns.color_palette('pastel', len(metrics))
-        fig, ax = plt.subplots(figsize=(10, 6))
-        
-        for i, metric in enumerate(metrics):
-            ax.bar([company1, company2], [company1_data[metric].mean(), company2_data[metric].mean()], label=metric, color=colors[i])
-        
-        ax.set_ylabel('Mean Value')
-        ax.set_title('Financial Metrics')
-        ax.legend()
-        st.pyplot(fig)
-        
-        # ESG Scores Comparison
-        st.subheader('ESG Scores Comparison')
+        # Define ESG metrics to compare
         esg_metrics = ['Total E', 'Total S', 'Total G']
-        colors = sns.color_palette('pastel', len(esg_metrics))
-        fig, ax = plt.subplots(figsize=(10, 6))
-        
-        for i, esg_metric in enumerate(esg_metrics):
-            ax.bar([company1, company2], [company1_data[esg_metric].mean(), company2_data[esg_metric].mean()], label=esg_metric, color=colors[i])
-        
-        ax.set_ylabel('Mean Value')
-        ax.set_title('ESG Scores')
-        ax.legend()
-        st.pyplot(fig)
-    
-    elif len(companies) == 1:
-        st.warning('Please select two companies for comparison.')
-    
+
+        # Plot bar charts for financial metrics
+        st.subheader("Financial Metrics - Bar Chart")
+        financial_data = data[financial_metrics].T
+        st.bar_chart(financial_data)
+
+        # Plot bar charts for ESG metrics with different colors
+        st.subheader("ESG Metrics - Bar Chart")
+        esg_data = data[esg_metrics].T
+        esg_data.columns = [company1, company2]
+        esg_data.index = ['Environmental (E)', 'Social (S)', 'Governance (G)']
+        st.bar_chart(esg_data)
+
+        # Add legend
+        st.text("Legend:")
+        st.text(f"- {companies[0]}: Blue")
+        st.text(f"- {companies[1]}: Orange")
     else:
-        st.warning('Select up to two companies.')
+        st.warning('Please select exactly two companies to compare.')
+
+    
   
     
     
