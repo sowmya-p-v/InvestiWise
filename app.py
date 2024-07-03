@@ -238,7 +238,7 @@ def performance_analysis():
     
     st.title('Performance Analysis')
     companies = st.multiselect('Select Companies (up to two)', list(df['Company'].unique()))
-    companies = st.multiselect('Select two companies to compare', df['Company'].unique())
+    # companies = st.multiselect('Select two companies to compare', df['Company'].unique())
 
     if len(companies) == 2:
         company1, company2 = companies
