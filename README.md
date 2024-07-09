@@ -11,9 +11,9 @@ This project aims to develop a machine learning system that predicts investment 
   
 - **📰 Sentiment Analysis**: Utilizing a pre-trained DistilBERT model to perform sentiment analysis on news articles, classifying them into negative, neutral, and positive categories.
   
-- **🤖 Machine Learning Models**: Developing models to predict credit rating impact and news sentiment scores. Combining these predictions with financial metrics to predict overall investment risk. Implementing classification algorithms and BERT for sentiment analysis.
+- **🤖 Machine Learning Models**: Developing models to predict credit rating impact and news sentiment scores. Combining these predictions with financial metrics to predict overall investment risk. Implementing classification algorithms and DistilBERT for sentiment analysis.
 
-- **🚀 Deployment**: In progress.
+- **🚀 Deployment**: Using Streamlit and ngrok
 
 
 
