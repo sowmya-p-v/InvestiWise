@@ -7,7 +7,7 @@ This project aims to develop a machine learning system that predicts investment 
 
 ## Key Features
 
-- **📊 Financial Data Analysis**: Integrating various financial metrics, including EPS Growth, Beta, ESG Scores, and country related value (COUNTRY_RISK_MARKET_RETURN, COUNTRY_RISK_PREMIUM, COUNTRY_RISK_RFR).
+- **📊 Financial Data Analysis**: Integrating various financial metrics, including EPS Growth, Beta, ESG Scores, and country related metrics (COUNTRY_RISK_MARKET_RETURN, COUNTRY_RISK_PREMIUM, COUNTRY_RISK_RFR).
   
 - **📰 Sentiment Analysis**: Utilizing a pre-trained DistilBERT model to perform sentiment analysis on news articles, classifying them into negative, neutral, and positive categories.
   
