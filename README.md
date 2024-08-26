@@ -5,6 +5,8 @@
 
 This project aims to develop a machine learning system that predicts investment risk by integrating financial metrics along with ESG scores and news sentiment analysis. The system uses advanced data science techniques, combining financial data with sentiment analysis from news articles to provide reliable investment risk predictions. 
 
+This project represents foundational steps toward developing more sophisticated methodologies.
+
 ## Key Features
 
 - **📊 Financial Data Analysis**: Integrating various financial metrics, including EPS Growth, Beta, ESG Scores, and country related metrics (COUNTRY_RISK_MARKET_RETURN, COUNTRY_RISK_PREMIUM, COUNTRY_RISK_RFR).
